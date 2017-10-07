@@ -9,6 +9,12 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -67,7 +73,11 @@ public class MainActivity extends AppCompatActivity {
     }
 void go()
     {
-        ListView l=(ListView)findViewById(R.id.lv);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("first");
+        DatabaseReference myRef1 = database.getReference("second");
+
+       final ListView l=(ListView)findViewById(R.id.lv);
         stringArrayList = new ArrayList<String>();
 
 
@@ -75,16 +85,69 @@ void go()
         stringArrayList2 = new ArrayList<String>();
         stringArrayList3 = new ArrayList<String>();
         stringArrayList4 = new ArrayList<String>();
-        stringArrayList.add("1");
-        stringArrayList1.add("Student 1");
-        stringArrayList2.add("Description1");
-        stringArrayList3.add("95");
-        stringArrayList4.add("sdsds");
-        stringArrayList.add("2");
-        stringArrayList1.add("Student 2");
-        stringArrayList2.add("Description2");
-        stringArrayList3.add("87");
-        stringArrayList4.add("sdsds");
+
+
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                String value = dataSnapshot.getValue(String.class);
+                stringArrayList.add("1");
+
+
+                stringArrayList1.add(value);
+                stringArrayList2.add("Description1");
+                stringArrayList3.add("95");
+                stringArrayList4.add("sdsds");
+                l.setAdapter(lviewAdapter);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+
+                stringArrayList1.add("sgg");
+            }
+        });
+
+
+
+
+
+        myRef1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                String value = dataSnapshot.getValue(String.class);
+                stringArrayList.add("2");
+                stringArrayList1.add(value);
+
+                stringArrayList2.add("Description2");
+                stringArrayList3.add("87");
+                stringArrayList4.add("sdsds");
+                l.setAdapter(lviewAdapter);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+
+                stringArrayList1.add("aaa");
+            }
+        });
+
+
+
+
+
+
+
+
         stringArrayList.add("3");
         stringArrayList1.add("Student 3");
         stringArrayList2.add("Description3");
