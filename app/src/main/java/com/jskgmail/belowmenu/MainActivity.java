@@ -6,8 +6,6 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -75,17 +73,9 @@ public class MainActivity extends AppCompatActivity {
     }
 void go()
     {
-        final ImageView imageView=(ImageView)findViewById(R.id.imageView2) ;
-        final ViewGroup container=(ViewGroup)findViewById(R.id.ok);
+
         final ListView l=(ListView)findViewById(R.id.lv);
-final TextView textView=(TextView)findViewById(R.id.textView);
-               imageView.setOnClickListener(new View.OnClickListener() {
-                   @Override
-                   public void onClick(View v) {;
-                     
-                       textView.setText("ojjj");
-                   }
-               });
+
 
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
