@@ -3,7 +3,6 @@ package com.jskgmail.belowmenu;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.transition.TransitionManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +16,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.transitionseverywhere.ChangeText;
 
 import java.util.ArrayList;
 
@@ -78,14 +76,14 @@ public class MainActivity extends AppCompatActivity {
 void go()
     {
         final ImageView imageView=(ImageView)findViewById(R.id.imageView2) ;
-        final ViewGroup container=(ViewGroup)findViewById(R.id.container);
+        final ViewGroup container=(ViewGroup)findViewById(R.id.ok);
         final ListView l=(ListView)findViewById(R.id.lv);
 final TextView textView=(TextView)findViewById(R.id.textView);
                imageView.setOnClickListener(new View.OnClickListener() {
                    @Override
-                   public void onClick(View v) {
-                       TransitionManager.beginDelayedTransition(container,new ChangeText().setChangeBehavior(ChangeText.CHANGE_BEHAVIOR_OUT_IN));
-                       textView.setText();
+                   public void onClick(View v) {;
+                     
+                       textView.setText("ojjj");
                    }
                });
 
