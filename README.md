@@ -1,2 +1,2 @@
 # Belowmenu
-Below Menu with listview
+Below Menu with synced list with every item of different colour 
